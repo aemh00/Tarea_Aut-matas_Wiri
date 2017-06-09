@@ -15,7 +15,7 @@ public class Window implements ActionListener {
 	private ArrayList<JLabel> aLabels = new ArrayList<JLabel>();
 	//Strings
 	private String tran,first,second,toSearch,eIni,eFin,act,eAct,blank="p";
-	private String[] cinta;
+	private String[] cinta,elementos;
 	private int contFields =2,conLabel=1, posCinta;
 	private Hashtable<String, String> hash = new Hashtable<String, String>();;
 	//FALTA:
@@ -173,15 +173,19 @@ public class Window implements ActionListener {
 			act = cinta[posCinta];
 			act = (eAct.concat(",")).concat(act);
 			System.out.print(" Estado actual: "+act+" | ");
+			//Busca la transición dentro del hash
 			tran = (String) hash.get(act);
 			System.out.println("transición:"+tran);
 			if(tran!=null){
-				eAct = tran.substring(0,1);
+				//se guarda la transición (q1,a,D) como arreglo.
+				elementos = tran.split(",");
+				eAct = elementos[0];
 				System.out.println("Estado Actual: "+eAct);
-				cinta[posCinta]=tran.substring(2,3);
-				if((tran.substring(4,5)).equals("D")){
+				cinta[posCinta]=elementos[1];
+				
+				if((elementos[2]).equals("D")){
 					posCinta++;
-				}else if((tran.substring(4,5)).equals("I")){
+				}else if((elementos[2]).equals("I")){
 					posCinta--;
 				}
 			}else{
