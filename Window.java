@@ -7,16 +7,16 @@ public class Window implements ActionListener {
 	//JObjetos
 	private JFrame frame;
 	private JPanel entrada,test,mainPanel,out,panel; 
-	private JButton lock,add,reset,in;
+	private JButton setear,agregar,reset,in;
 	private JTabbedPane tab;
 	private JLabel eti;
 	private JTextField field, word;
 	private ArrayList<JTextField> aFields = new ArrayList<JTextField>();
 	private ArrayList<JLabel> aLabels = new ArrayList<JLabel>();
 	//Strings
-	private String tran,first,second,toSearch,eIni,eFin,act,eAct,blank=" ";
+	private String tran,first,second,toSearch,eIni,eFin,act,eAct,blank="p";
 	private String[] cinta;
-	private int contFields =3,conLabel=1, posCinta;
+	private int contFields =2,conLabel=1, posCinta;
 	private Hashtable<String, String> hash = new Hashtable<String, String>();;
 	//FALTA:
 	//Ajustar cantidad de texto a mostrar en out.
@@ -41,6 +41,10 @@ public class Window implements ActionListener {
 	public JPanel setEntrada(){
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		//Panel top
+			JPanel p0 = new JPanel();
+			p0.setLayout(new FlowLayout());
+			p0.add(new JLabel("Ingrese:"));
 		//Panel Superior
 			JPanel p1 = new JPanel();
 			p1.setLayout (new FlowLayout());
@@ -54,29 +58,30 @@ public class Window implements ActionListener {
 		//Panel textos
 			JPanel side = new JPanel(new FlowLayout());
 			side.add(new JLabel("<html> >Transiciones: <br> Ejemplos<br>     δ(q₁,a)-->(q₂,A,D)<br>     δ(q₂,b)-->(q₃,B,I)</html>"),BorderLayout.WEST);
-			side.add(new JLabel("                              Caracter Blanco"),BorderLayout.CENTER);
-			JTextField box3 = new JTextField(1);
-			side.add (box3);
+			side.add(new JLabel("                       Se define el caracter blanco como: "+blank),BorderLayout.CENTER);
+			/*JTextField box3 = new JTextField(1);
+			side.add (box3);*/
 		//Se agregan al arrayList los textFields
 		aFields.add(box);
 		aFields.add(box2);
-		aFields.add(box3);
+		/*aFields.add(box3);*/
 		//Panel Main
 			mainPanel = new JPanel();
 			mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));	
 		//Panel inferior (Botones)
 			JPanel p2 = new JPanel();
 			p2.setLayout (new FlowLayout());
-			lock = new JButton("Lock");
-			lock.addActionListener(this);
-			add = new JButton("Add");
-			add.addActionListener(this);
+			setear = new JButton("Guardar Configuración");
+			setear.addActionListener(this);
+			agregar = new JButton("Añadir transición");
+			agregar.addActionListener(this);
 			reset = new JButton("Reset");
 			reset.addActionListener(this);
-			p2.add(add);
-			p2.add(lock);
+			p2.add(agregar);
+			p2.add(setear);
 			p2.add(reset);		
 		//Añadir paneles en orden
+	    panel.add(p0);
 		panel.add(p1);
 		panel.add(side);
 		panel.add(mainPanel);
@@ -104,11 +109,11 @@ public class Window implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent e) {
 		JButton press = ((JButton) e.getSource());
-		if(press==add){
+		if(press==agregar){
 			//Añade inputs de Transiciones
 			mainPanel.add(new subPanel());
 			frame.pack();
-		}else if(press==lock){
+		}else if(press==setear){
 			//Setea las transiciones
 			hash.clear();
 			System.out.println(" tamaño inicial: "+hash.size());
@@ -130,9 +135,8 @@ public class Window implements ActionListener {
 		System.out.println("ini:"+eIni);
 		eFin =((JTextField) aFields.get(1)).getText();
 		System.out.println("fin:"+eFin);
-		blank =((JTextField) aFields.get(2)).getText();
 		System.out.println("contador:"+contFields);
-		for(int i=3;hash.size()<((contFields-3)/2);i=i+2){
+		for(int i=2;hash.size()<((contFields-2)/2);i=i+2){
 			System.out.print("iBefore: "+i+"  ");
 			first=((JTextField) aFields.get(i)).getText();
 			System.out.print("delta: "+first);
@@ -196,18 +200,18 @@ public class Window implements ActionListener {
 			sPanel = this;
 			sPanel.setLayout(new FlowLayout());
 			sPanel.add(new JLabel("δ("));
-			field = new JTextField(2);
+			field = new JTextField(3);
 			aFields.add(field);
 			sPanel.add(field);
 			sPanel.add(new JLabel(")-->("));
-			field=new JTextField(3);
+			field=new JTextField(4);
 			aFields.add(field);
 			sPanel.add(field);
 			sPanel.add(new JLabel(")"));
 			contFields=contFields+2;
 			System.out.println(">     cont:"+contFields);
-			JButton removeMe = new JButton("x");
-			removeMe.setFont(new Font("Arial", Font.PLAIN, 8));
+			JButton removeMe = new JButton("Eliminar Transicion");
+			removeMe.setFont(new Font("Arial", Font.PLAIN, 15));
 	        removeMe.addActionListener(new ActionListener(){
 	                public void actionPerformed(ActionEvent e) {
 	                    sPanel.getParent().remove(sPanel);
