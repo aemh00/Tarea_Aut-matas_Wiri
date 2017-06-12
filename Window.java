@@ -26,7 +26,7 @@ public class Window implements ActionListener {
 		testeo = setTesteo();
 		//Se añaden los paneles anteriores como pestañas
 		tab.add("Entrada", entrada);
-		tab.add("Testeo",testeo);
+		tab.add("Probar Maquina",testeo);
 		//Configuración básica del frame principal
 		frame.getContentPane().add(tab);
 		frame.setTitle("Máquina de Turing");
@@ -69,7 +69,7 @@ public class Window implements ActionListener {
 			setear.addActionListener(this);
 			agregar = new JButton("Añadir transición");
 			agregar.addActionListener(this);
-			reset = new JButton("Reset");
+			reset = new JButton("Restablecer");
 			reset.addActionListener(this);
 			p2.add(agregar);
 			p2.add(setear);
@@ -112,7 +112,7 @@ public class Window implements ActionListener {
 			registraT();
 			if(!hash.isEmpty()){
 				JOptionPane.showMessageDialog(frame,
-					    "Dirígase a la pestaña de >Testeo< ");
+					    "Dirígase a la pestaña de >Probar Maquina< ");
 			}else{
 				JOptionPane.showMessageDialog(frame,
 					    "Debe ingresar los estados y las transiciones");
