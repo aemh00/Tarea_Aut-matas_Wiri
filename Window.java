@@ -26,10 +26,10 @@ public class Window implements ActionListener {
 		testeo = setTesteo();
 		//Se añaden los paneles anteriores como pestañas
 		tab.add("Entrada", entrada);
-		tab.add("Probar Maquina",testeo);
+		tab.add("Probar Máquina",testeo);
 		//Configuración básica del frame principal
 		frame.getContentPane().add(tab);
-		frame.setTitle("Máquina de Turing");
+		frame.setTitle("Wiri-MT: Máquina de Turing");
 		frame.pack();
 	    frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +112,7 @@ public class Window implements ActionListener {
 			registraT();
 			if(!hash.isEmpty()){
 				JOptionPane.showMessageDialog(frame,
-					    "Dirígase a la pestaña de >Probar Maquina< ");
+					    "Dirígase a la pestaña de >Probar Máquina< ");
 			}else{
 				JOptionPane.showMessageDialog(frame,
 					    "Debe ingresar los estados y las transiciones");
