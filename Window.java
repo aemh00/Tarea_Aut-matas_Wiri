@@ -206,7 +206,6 @@ public class Window implements ActionListener {
 			sPanel.add(field);
 			sPanel.add(new JLabel(")"));
 			contFields=contFields+2;
-			//System.out.println(">     cont:"+contFields);
 			//A cada input de transicion se le añade un boton de borrar
 			JButton removeMe = new JButton("Eliminar Transicion");
 			removeMe.setFont(new Font("Arial", Font.PLAIN, 15));
